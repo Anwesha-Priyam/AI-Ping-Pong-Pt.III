@@ -27,26 +27,18 @@ function setup(){
 
   video=createCapture(VIDEO);
   video.size(700,600);
-  video.hide();
+
+  poseNet = ml5.poseNet(video, modelLoaded);
 }
 
+function modelLoaded()
+{
+  console.log('Model Loaded!');
+  status=true;
+}
 
 function draw(){
 
-  game()
-  if(noseX > 300)
-  {
-    paddle1X=paddle1X-1;
-  }
-  if(noseX < 300)
-  {
-    paddle1X=paddle1X+1;
-  }
-  if(noseY < 150)
-  {
-    paddle1Y=paddle1Y=1;
-  }
-  image(img, paddle1X, paddle1Y, 40, 70);
 
  background(0); 
 
@@ -87,7 +79,21 @@ function draw(){
     move();
 }
 
+function gotPoses(results)
+{
+    if(results.length > 0)
+    {
+        console.log(results);
 
+        rightWristScore=results[0].pose.keypoints[10].score;
+        rightWristX=results[0].pose.rightWrist.x;
+        rightWristY=results[0].pose.rightWrist.y;
+
+        leftWristScore=results[0].pose.keypoints[9].score;
+        leftWristX=results[0].pose.leftWrist.x;
+        leftWristY=results[0].pose.leftWrist.y;
+    }
+}
 
 //function reset when ball does notcame in the contact of padde
 function reset(){

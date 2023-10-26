@@ -53,3 +53,8 @@ footer
     display: inline-block;
     width: 45%;
 }
+
+.canvas
+{
+    border: 5px cornsilk;
+}
