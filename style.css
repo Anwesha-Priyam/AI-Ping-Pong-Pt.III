@@ -33,12 +33,14 @@ body
 
 footer
 {
-    bottom: 50%;
+    bottom: 1%;
+    width: 100%;
+    text-align: center;
+    position: fixed;
     color: aliceblue;
-    background-color: indianred;
     font: italic;
-    position: sticky;
-    background-size: contain;
+    box-shadow: 1px burlywood;
+    background-color: indianred;
 }
 
 .modal-dialog
